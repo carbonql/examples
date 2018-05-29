@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "outDir": "build",
+
+    // NOTE: Turning this on in TS 2.7.1 will cause type checking to start
+    // failing in vscode.
+    // "noUnusedLocals": true,
+
+    // Compiler strictness settings.
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "pretty": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strict": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "build"
+  ]
+}
