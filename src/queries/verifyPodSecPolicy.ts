@@ -11,7 +11,7 @@ function logError(cond: boolean, pod: k8s.IoK8sApiCoreV1Pod, err: string) {
 
 function reportUnsupportedVolumeTypes(pod: k8s.IoK8sApiCoreV1Pod): void {
   // Allow only the core volume types. NOTE: hostPath is not included in the list.
-  const disallowedVols = pod.spec.volumes.filter(volume =>
+  const disallowedVols = (pod.spec.volumes == null ? [] : pod.spec.volumes).filter(volume =>
     volume["configMap"] == null &&
     volume["emptyDir"] == null &&
     volume["projected"] == null &&
