@@ -18,7 +18,7 @@ function reportUnsupportedVolumeTypes(pod: k8s.IoK8sApiCoreV1Pod): void {
     volume["secret"] == null &&
     volume["downwardAPI"] == null &&
     volume["persistentVolumeClaim"] == null);
-  logError(disallowedVols.length > 0, pod, "uses unsupported volume type"); }
+  logError(disallowedVols.length > 0, pod, "uses unsupported volume type");
 }
 
 function reportUncompliantSecurityContext(pod: k8s.IoK8sApiCoreV1Pod): void {
