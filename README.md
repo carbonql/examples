@@ -88,6 +88,9 @@ node build/kgrep
   use](https://github.com/carbonql/examples/blob/master/src/queries/podsByPvAccess.ts): Obtain all
   "Bound" PersistentVolumes (PVs). Then, obtain all Pods that use those PVs. Finally, print a small
   report listing the PV and all Pods that reference it.
+* [Verify Pod security
+  policy](https://github.com/carbonql/examples/blob/master/src/queries/verifyPodSecPolicy.ts): Find
+  all Pods that are not compliant with some security policy.
 
 ### Operations-related queries
 
