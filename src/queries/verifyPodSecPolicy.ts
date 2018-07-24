@@ -1,13 +1,15 @@
 import {query, Client, transform, k8s} from "@carbonql/carbonql";
 import * as chalk from "chalk";
 
-function logError(cond: boolean, pod: k8s.IoK8sApiCoreV1Pod, err: string) {
-  if (cond) { console.log(`${chalk.default.green(pod.metadata.name)}: ${err}`); }
-}
-
 //
 // Helper functions that print information about non-compliant pods.
 //
+function logError(cond: boolean, pod: k8s.IoK8sApiCoreV1Pod, err: string) {
+  if (cond) { 
+    const podName = chalk.default.green(pod.metadata.name)
+    const podNamespace = chalk.default.yellow(pod.metadata.namespace)
+    console.log(`Pod [${podName}] in namespace [${podNamespace}] ${chalk.default.red(err)}`); }
+}
 
 function reportUnsupportedVolumeTypes(pod: k8s.IoK8sApiCoreV1Pod): void {
   // Allow only the core volume types. NOTE: hostPath is not included in the list.
@@ -18,7 +20,8 @@ function reportUnsupportedVolumeTypes(pod: k8s.IoK8sApiCoreV1Pod): void {
     volume["secret"] == null &&
     volume["downwardAPI"] == null &&
     volume["persistentVolumeClaim"] == null);
-  logError(disallowedVols.length > 0, pod, "uses unsupported volume type");
+
+  logError(disallowedVols.length > 0, pod, `uses unsupported volume type for volumes [${disallowedVols.map(a => a.name)}]`);
 }
 
 function reportUncompliantSecurityContext(pod: k8s.IoK8sApiCoreV1Pod): void {
